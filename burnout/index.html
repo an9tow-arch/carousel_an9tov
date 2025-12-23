@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="telegram-app-url" content="https://an9tow-arch.github.io/carousel_an9tov/burnout/">
+  <title>Карусель</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <style>
+    * { margin:0; padding:0; }
+    html, body { height:100%; background:#000; overflow:hidden; }
+    .swiper { width:100vw; height:100vh; }
+    .swiper-slide img { width:100%; height:100%; object-fit:contain; }
+    .swiper-pagination { bottom:20px; }
+    .swiper-pagination-bullet { background:#fff; opacity:0.5; }
+    .swiper-pagination-bullet-active { opacity:1; }
+  </style>
+</head>
+<body>
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="s1.jpg"></div>
+      <div class="swiper-slide"><img src="s2.jpg"></div>
+      <div class="swiper-slide"><img src="s3.jpg"></div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    new Swiper('.swiper', {
+      pagination: { el: '.swiper-pagination', clickable: true },
+      keyboard: true,
+      allowTouchMove: true
+    });
+
+    // Закрытие по свайпу вниз
+    let startY;
+    document.addEventListener('touchstart', e => startY = e.touches[0].clientY);
+    document.addEventListener('touchend', e => {
+      if (startY - e.changedTouches[0].clientY > 100) window.Telegram?.WebApp?.close();
+    });
+  </script>
+</body>
+</html>
